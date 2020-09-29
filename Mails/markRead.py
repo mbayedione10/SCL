@@ -17,14 +17,9 @@ mdp = input()
 mail.login(log,mdp)
 mail.select()
 #filtrer les mails
-typ, data = mail.search(None,'FROM', "f.sow@sesam.sn", "UNSEEN", 'SUBJECT', "Success")
-#type, donnee =mail.delete(None,'FROM', "f.sow@sesam.sn", "UNSEEN", 'SUBJECT', "Success")
-receiver = "mbayedione10@gmail.com"
-message = """\
-Subject: Hi there
+typ, data = mail.search(None,'FROM', "sender@mail.com", "UNSEEN", 'SUBJECT', "Success")
+#type, data =mail.delete(None,'FROM', "sender@mail.com", "UNSEEN", 'SUBJECT', "Success")
 
-This message is sent from Python.Success"""
-mail .sendmail(receiver,message)
 #Lire
 for num in data[0].split():
     typ, data = mail.fetch(num, '(RFC822)')
