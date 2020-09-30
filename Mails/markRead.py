@@ -16,20 +16,13 @@ mdp = input()
 
 mail.login(log,mdp)
 mail.select()
-<<<<<<< HEAD
 
 #search specific mails
 typ, data = mail.search(None,'FROM', "f.sow@sesam.sn", "UNSEEN", 'SUBJECT', "Success")
 #typ, data = mail.search(None,'FROM', "f.sow@sesam.sn", "SEEN", 'SUBJECT', "Success")
 
 
-=======
-#filtrer les mails
-typ, data = mail.search(None,'FROM', "sender@mail.com", "UNSEEN", 'SUBJECT', "Success")
-#type, data =mail.delete(None,'FROM', "sender@mail.com", "UNSEEN", 'SUBJECT', "Success")
-
 #Lire
->>>>>>> 2072a9aaf5697044ce736bec80eb3adfee66b87d
 for num in data[0].split():
     #Read
     typ, data = mail.fetch(num, '(RFC822)')
