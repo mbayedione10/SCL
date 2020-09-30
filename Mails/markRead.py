@@ -16,20 +16,19 @@ mdp = input()
 
 mail.login(log,mdp)
 mail.select()
-#filtrer les mails
-typ, data = mail.search(None,'FROM', "f.sow@sesam.sn", "UNSEEN", 'SUBJECT', "Success")
-#type, donnee =mail.delete(None,'FROM', "f.sow@sesam.sn", "UNSEEN", 'SUBJECT', "Success")
-receiver = "mbayedione10@gmail.com"
-message = """\
-Subject: Hi there
 
-This message is sent from Python.Success"""
-mail .sendmail(receiver,message)
-#Lire
+#search specific mails
+typ, data = mail.search(None,'FROM', "f.sow@sesam.sn", "UNSEEN", 'SUBJECT', "Success")
+#typ, data = mail.search(None,'FROM', "f.sow@sesam.sn", "SEEN", 'SUBJECT', "Success")
+
+
 for num in data[0].split():
+    #Read
     typ, data = mail.fetch(num, '(RFC822)')
-    mail.store(num, '+FLAGS', '\\Deleted')
-    print("deleted succesfully")
+    #Delete
+    #mail.store(num, '+FLAGS', '(\\Deleted)')
+
+#print("deleted succesfully")
 
 
 mail.close()  #close the mail box
