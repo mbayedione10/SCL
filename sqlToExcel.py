@@ -38,8 +38,8 @@ filename = r"E:\SQLPython\{0}-{1}{2}".format("RequeteSQL", date, ".xlsx")
 # connect to MySQL Server SRV-DB
 def connexion():
   conn = pyodbc.connect(Driver = '{SQL Server Native Client 11.0}',
-                        Server = 'SRV-DB',
-                        Database = 'Server Name',
+                        Server = 'Server Name',
+                        Database = 'Database Name',
                         user='login',
                         password="password"
                         )
