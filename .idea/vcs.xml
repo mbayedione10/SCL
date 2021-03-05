@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/SQLPython/sqltoexcel" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Scraper" vcs="Git" />
   </component>
 </project>
