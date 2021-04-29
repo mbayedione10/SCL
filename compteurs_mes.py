@@ -23,7 +23,8 @@ print(df1)
 
 # dropping ALL duplicte values 
 df1.drop_duplicates(subset ="N° de compteur", 
-                     keep = 'first', inplace = True) 
+                     keep = 'first', inplace = True) #use file from system 'Nouveaux Clients'
+                     # keep = 'last', inplace = True) #use file 'reabonnement'
 print(df1)
 
 #TODO 'find type de connexion' using pandas
