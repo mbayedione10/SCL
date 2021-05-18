@@ -16,8 +16,8 @@ mail.select()
 
 #Search mailbox for matching messages.
 #'mark' and 'delete' are space separated list of matching message numbers.
-typ1, mark = mail.search(None,'FROM', "f.sow@sesam.sn", "UNSEEN", 'SUBJECT', "Success")
-typ2, delete = mail.search(None,'FROM', "f.sow@sesam.sn", "SEEN", 'SUBJECT', "Success","SENTBEFORE", date)
+typ1, mark = mail.search(None,'FROM', "mailfrom@mail.com", "UNSEEN", 'SUBJECT', "Success")
+typ2, delete = mail.search(None,'FROM', "mailfrom@mail.com", "SEEN", 'SUBJECT', "Success","SENTBEFORE", date)
 
 
 for num in mark[0].split():py
