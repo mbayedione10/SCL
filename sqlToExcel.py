@@ -47,25 +47,28 @@ def connexion():
 
 
 
+
 #--TRANSFERT
 def listeTransfert(year):
   cnx = connexion()
   # prepare a cursor object using cursor() method
   cursor  = cnx.cursor()
-  cursor.execute("select om.contractNo, om.METERNO, om.OPERATOR,om.OP_TIME," \
-                 "om.ENERGY, om.ADDTIONAL_ENERGY from ORDER_MASTER om "\
+  cursor.execute("select om.contractNo, om.METERNO, cc.ADDR, cc.SERVICE_LEVEL, "\
+                 "om.OPERATOR, format(om.OP_TIME,'yyyy-MM-dd') as 'DATE', om.ENERGY, om.ADDTIONAL_ENERGY "\
+                 "from ORDER_MASTER om LEFT JOIN CON_CONTRACT cc on om.METERNO=cc.METER_NO "\
                  "where om.ORDER_TYPE='28'and format(om.OP_TIME,'yyyy-MM')= '"+year+"' "\
                  "order by om.OP_TIME desc")
 
-
+  #Mettre dans une liste
   results = cursor.fetchall()
   active = wb['Transfert']
+  #Parcourir et print
   for row in results:
     #Replace None value with 0
-    if row[4] == None:
-        row[4] = 0
-    if row[5] == None:
-        row[5] = 0
+    if row[6] == None:
+        row[6] = 0
+    if row[7] == None:
+        row[7] = 0
     #make a row as List
     listrow = list(row)
     active.append(listrow)
@@ -185,21 +188,22 @@ def listePriseEnCharge():
   cnx = connexion()
   # prepare a cursor object using cursor() method
   cursor  = cnx.cursor()
-  cursor.execute("select CON_NO,ACC_NO, METER_NO,dy.HM,SERVICE_LEVEL,BALANCE from CON_CONTRACT cc "
-                 "left join da_yh dy on cc.ACC_NO=dy.HH "\
-                 "where cc.ELE_PROPERTY='02' and cc.CON_SIGN in ('01','03') and BALANCE ='17479'")
+  cursor.execute("select CON_NO,ACC_NO, METER_NO,ADDR, dy.HM,SERVICE_LEVEL, tel.SJHM as 'Phone', BALANCE  from CON_CONTRACT cc "
+                 "left join da_yh dy on cc.ACC_NO=dy.HH Left join DA_YHLXR tel on cc.ACC_NO=tel.HH "\
+                 "where BALANCE >0 and cc.CON_SIGN in ('01','03','04') order by BALANCE desc") 
 
-  
+  #Mettre dans une liste
   results = cursor.fetchall()
   active = wb['Prise en charge']
- 
+  #Parcourir et print
   for row in results:
-    #make a row as List
+    #make a row as List 
     listrow = list(row)
     active.append(listrow)
   wb.save(filename)
   print("Success!!!! Prise en charge done")
   return results
+
 
 
 def sendMail():
