@@ -170,7 +170,7 @@ def send_mail(fichier):
 
     """
     fromaddr = "mbayedione10@gmail.com"
-    toaddr = ["mbayedione10@gmail.com","nioulboy@gmail.com"]
+    toaddr = ["mbayedione10@gmail.com","nioulboy@gmail.com","mbayedione10@scl-es.sn"]
     
     session = smtplib.SMTP('smtp.gmail.com', 587)
     print("creating SMTP session")
@@ -178,7 +178,7 @@ def send_mail(fichier):
     # start TLS for security
     session.starttls()
     # Authentication
-    session.login(fromaddr, "cmfoligafgmexlny")
+    session.login(fromaddr, "SenderPassword")
 
     # instance of MIMEMultipart
     msg = MIMEMultipart()
@@ -200,16 +200,15 @@ def send_mail(fichier):
     print("encode into base64")
     p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 
+    msg.attach(MIMEText(body, 'plain'))
+    print("attach the body with the msg instance")
+        
+    msg.attach(p)
+    print("add the instance 'p' to instance 'msg'")
     for to_email in toaddr:
 
         msg['To'] = to_email
         print("storing sender, receiver address and body email")
-
-        msg.attach(MIMEText(body, 'plain'))
-        print("attach the body with the msg instance")
-        
-        msg.attach(p)
-        print("add the instance 'p' to instance 'msg'")
 
         # Converts the Multipart msg into a string
         text = msg.as_string()
@@ -288,7 +287,7 @@ def main():
     list_of_files = glob.iglob("E:\\SQLPython\\Ventes\\*.xlsx")  # * means all if need specific format then *.csv
     latest_file = sorted(list_of_files, key=os.path.getmtime, reverse=True)[:1]
     
-    addSummSheet(latest_file[0])
+    #addSummSheet(latest_file[0])
     
     time.sleep(5)
 
