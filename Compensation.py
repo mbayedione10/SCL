@@ -23,7 +23,7 @@ df1 = pd.read_excel(df, sheet_name= '1-Liste clients ')
 df2 = pd.read_excel(df, sheet_name='3-Nouveaux Clients')
 df3 = pd.read_excel(df,sheet_name='5-Client en Inst de MES')
 df4 = pd.read_excel(df,sheet_name='7-Liste RO')
-print(df1.dtypes)ddffd
+print(df1.dtypes)
 print(df1.keys())
 print(df4.keys())
 print("********************************")
